@@ -1,0 +1,167 @@
+*{
+    margin:0;
+    padding:0;
+}
+.story-flex{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 400vw;
+    overflow-x: scroll;
+}
+.story-container{
+    height: 100vh;
+    width: 100vw;
+}
+.story-1{
+    height: 100vh;
+    width: 100%;
+    background-color: oldlace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img-1{
+    height: 80vh;
+    width: 90%;
+    padding:10px 50px 10px 50px; ;
+    background-image:url("images/intro1.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(2,1fr);
+    transition: filter 0.5s ease;
+}
+.img-2{
+    height: 80vh;
+    width: 90%;
+    padding:10px 50px 10px 50px; ;
+    background-image:url("images/wandering.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.img-3{
+    height: 80vh;
+    width: 90%;
+    padding:10px 50px 10px 50px; ;
+    background-image:url("images/thinking.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.img-4{
+    height: 80vh;
+    width: 90%;
+    padding:10px 50px 10px 50px; ;
+    background-image:url("images/stargazing.png");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(2,1fr);
+}
+.btn-place{
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.intro-btn{
+    height: 100px;
+    width: 200px;
+    align-content: center;
+    border-radius: 50px;
+    border: 0;
+    background-color:#EB5B13 ;
+    color: aliceblue;
+    transition: all 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    opacity: 0.8;
+}
+.intro-btn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.intro-btn:active{
+    opacity: 1;
+}
+.title{
+    position: relative;
+    text-align: center;
+    color: aliceblue;
+}
+.main-title{
+    color: aliceblue;
+    font-family: 'Playfair Display', cursive;
+    font-size: 4em;
+    text-align: center;
+}
+.title-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.story-info{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+    color: navy;
+}
+.x{
+    opacity:1;
+    transition: opacity 0.5s ease-out;
+}
+.y{
+    opacity:0;
+    transition: opacity 0.5s ease-in-out;
+}
+.fadeout{
+    opacity:0;
+}
+.intro-info1{
+    opacity:0; 
+    transition:opacity 0.5s ease-in-out;
+}
+.fadein{
+    opacity: 1;
+}
+.img-btn{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+.img-btn button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.img-btn button img {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+#back{
+    border-radius: 50%;
+}
+.brightup{
+    filter: brightness(1.5);
+}

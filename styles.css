@@ -1,0 +1,246 @@
+/* --- Basic Setup --- */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+    font-family: sans-serif;
+    /* This helps center everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Hide objects when they orbit off-screen */
+    
+}
+
+/* The main container for the Earth and orbiting objects */
+.four {
+    /* position: relative; */
+    width: 100vw; /* A fixed size for the orbit space */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("earth.png");
+    background-position: center;
+    background-size: cover;
+}
+
+/* The central Earth image */
+.four > img {
+    width: 30%; /* Make Earth smaller than the container */
+    height: auto;
+    z-index: 10; /* Keep Earth on top */
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform: translateY(-20px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes orbitFloat {
+  0%{
+    transform: translateX(-750px);
+  }
+  100%{
+    transform: translateX(100vw);
+  }
+}
+@keyframes rokorbitFloat {
+  0%{
+    transform: translateX(+750px);
+  }
+  100%{
+    transform: translateX(-100vw);
+  }
+} 
+/* --- Wrapper Styles (The MOST IMPORTANT part) --- */
+/* Common styles for all orbiting object containers */
+
+.sat{
+    position: absolute; top:10% ;left:40%;
+}
+.sat1{
+    position: absolute; top:20% ;left:20%;
+}
+
+.rock{
+    position: absolute; top:40% ;left:70%;
+}
+
+.rock1{
+    position: absolute; top:50% ;left:40%;
+}
+/* Assigning a unique animation to each wrapper for variety */
+.sat {
+    width: 120px; height: 100px;
+    animation: orbitFloat 20s linear infinite;
+}
+
+.sat1 {
+    width: 100px; height: 80px;
+    animation: orbitFloat 28s linear infinite;
+   
+}
+.rock {
+    width: 90px; height: 90px;
+    animation: rokorbitFloat 25s linear infinite ; /* Go backwards */
+}
+.rock1 {
+    width: 100px; height: 100px;
+    animation: rokorbitFloat 28s linear infinite ; /* Go backwards */
+}
+
+/* --- Image and Info-Box Styles --- */
+/* Common styles for all images inside wrappers */
+.satelite, .asteroid {
+    width: 100%;
+    animation:  float 4s ease-in-out infinite;
+}
+
+.asteroid1{
+    width: 100%;
+    animation: rock-disapper 30s ease-in-out infinite;
+}
+/* Common styles for all info boxes */
+.info-rock {
+    opacity: 0; /* Hidden by default */
+    position: absolute;
+    bottom: 110%; /* Position it just above the image */
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%); /* Center the info box */
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Prevents the info-box from blocking the mouse */
+    text-align: center;
+}
+
+.info-sat{
+    opacity: 0; /* Hidden by default */
+    position: absolute;
+    /* Position it just above the image */
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%); /* Center the info box */
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* Prevents the info-box from blocking the mouse */
+    text-align: center;
+}
+
+/* --- The Correct Hover Logic --- */
+/* When a WRAPPER is hovered, scale the IMAGE inside it */
+.sat:hover .satelite,
+.sat1:hover .satelite,
+.rock:hover .asteroid,
+.rock1:hover .asteroid {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
+/* When a WRAPPER is hovered, show the INFO-BOX inside it */
+.sat:hover .info-sat,
+.sat1:hover .info-sat,
+.rock:hover .info-rock,
+.rock1:hover .info-rock {
+    opacity: 1;
+}
+
+.rocket {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    animation: rocketo 15s ease-in-out infinite;
+}
+
+
+@keyframes rocketo {
+    0% {
+        transform: translateY(50vh);
+        opacity: 1;
+    }
+    50% {
+        opacity: 1; /* visible until near collision */
+    }
+    60%{
+        opacity: 0;
+    }
+  
+    100% {
+        transform: translateY(-50vh);
+
+    }
+}
+
+
+
+
+/* --- Add this to your styles.css file --- */
+
+/* 1. Define the animation for the smoke puff */
+/* --- Add this to your styles.css file --- */
+
+/* 1. Define the animation for the smoke IMAGE */
+/* This will make the image appear and then fade out */
+@keyframes show-and-fade-smoke {
+  0% {
+    opacity: 1;
+    transform: scale(0.5); /* Start slightly smaller */
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2); /* Grow larger as it fades */
+  }
+}
+
+@keyframes rock-disapper{
+    0%{
+        opacity: 1;
+    }
+    52% {
+        opacity: 0; /* visible until near collision */
+    }
+    100%{
+        opacity: 0;
+    }
+}
+/* 2. The .smoke-puff div is now just a container for positioning */
+.smoke-puff {
+    position: relative;
+  /* Position it where the rock and rocket will collide */
+  /* You may need to adjust these values slightly */
+  top: 30px;
+  left: 80px;
+  /* We move the size and animation to the image itself */
+  z-index: 20; /* Make sure smoke appears on top */
+}
+
+
+/* 3. Style the smoke IMAGE and schedule its animation */
+.smoke {
+  /* The image starts invisible */
+  opacity: 0;
+  
+  width: 100px; /* Set the size of your smoke image */
+  height: auto;
+
+  /* Apply the animation */
+  /* name | duration | THE DELAY | fill-mode */
+  animation: show-and-fade-smoke 5s 8s forwards;
+}
